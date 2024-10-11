@@ -1,0 +1,45 @@
+/*Definition of singly linked list:
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {
+        val = 0;
+        next = null;
+    }
+
+    ListNode(int data1) {
+        val = data1;
+        next = null;
+    }
+
+    ListNode(int data1, ListNode next1) {
+        val = data1;
+        next = next1;
+    }
+}
+ */
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+  if (head == null || head.next == null)
+            return head;
+
+        // Perform rotation k times
+        for (int i = 0; i < k; i++) {
+            ListNode temp = head;
+            // Find the second last node
+            while (temp.next.next != null) temp = temp.next;
+            // Get the last node
+            ListNode end = temp.next;
+            // Break the link between 
+            // second last and last node
+            temp.next = null;
+            // Make the last node
+            // as new head
+            end.next = head;
+            head = end;
+        }
+        return head;
+    }
+}
